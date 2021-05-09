@@ -1,35 +1,31 @@
 <template>
     <div class="container">
-        <app-header></app-header>
-        <hr>
         <div class="row">
-            <servers></servers>
-            <app-server-details></app-server-details>
+            <div class="col-xs-12">
+                <app-user></app-user>
+            </div>
         </div>
-        <hr>
-        <app-footer></app-footer>
     </div>
 </template>
 
 <script>
 // import globally
+    import User from './components/User';
 
-    import Header from './components/Shared/Header.vue';
-    import Footer from './components/Shared/Footer.vue';
-    import Servers from './components/Server/Servers.vue';
-    import ServerDetails from './components/Server/ServerDetails.vue';
 
 // register globally
     export default {
         components: {
-            appHeader: Header,
-            Servers,
-            'app-server-details': ServerDetails,
-            'app-footer': Footer
+            appUser: User
         }
     }
 </script>
 
 <style>
+div.component{
+  border: px solid black;
+  padding: 30px;
+  margin: 30px;
+}
 
 </style>
