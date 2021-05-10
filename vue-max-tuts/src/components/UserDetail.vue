@@ -12,6 +12,9 @@
 </template>
 
 <script>
+// we import the event bus
+import { eventBus } from '../main'
+
 export default {
     // props: ['name'],
     props : {
@@ -32,7 +35,12 @@ export default {
             this.name = 'Raymond';
             this.$emit('nameWasReset', this.name)
         }
-    }
+    }, 
+    created() {
+        eventBus.$on('ageWasEdited', (age) => {
+            this.userAge = age;
+        });
+}
 }
 </script>
 
