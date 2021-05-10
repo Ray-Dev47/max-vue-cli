@@ -1,10 +1,14 @@
 <template>
-    <div> {{ quote }}  </div>
+   <div>
+       <slot name="text"></slot>
+       <h4>Just a Random Quote in between the slots</h4>
+       <slot name="header"></slot>
+   </div>
 </template>
 
 <script>
 export default {
-    props: ['quote']
+   
 
 }
 </script>
@@ -16,6 +20,9 @@ export default {
        padding: 30px;
        margin: 30px auto;
        text-align: center;
+   }
+   p,h1,h2,h3,h4{
+       color: red;
    }
 
 </style>
