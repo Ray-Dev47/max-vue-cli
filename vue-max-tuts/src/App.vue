@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <app-user></app-user>
+                <appQuotes quote="A wonderful Quote!"></appQuotes>
             </div>
         </div>
     </div>
@@ -10,22 +10,17 @@
 
 <script>
 // import globally
-    import User from './components/User';
+    import Quotes from './components/Quote';
 
 
 // register globally
     export default {
         components: {
-            appUser: User
+            appQuotes: Quotes
         }
     }
 </script>
 
 <style>
-div.component{
-  border: px solid black;
-  padding: 30px;
-  margin: 30px;
-}
 
 </style>
