@@ -3,13 +3,16 @@
         <h1>The User Component</h1>
         <p>I am an Awesome User!</p>
         <button v-on:click="changeName" class="btn btn-primary btn:hover">Change my name</button>
+        <p>Name is : {{name}}</p>
         <hr>
          <div class="row">
             <div class="col-xs-12 col-sm-6">
-                <app-user-detail></app-user-detail>
+                <!-- props call -->
+                <app-user-detail v-bind:name="name" v-on:nameWasReset="name = $event" :resetFn="resetName"></app-user-detail>
             </div>
             <div class="col-xs-12 col-sm-6">
-                <app-user-edit></app-user-edit>
+                 <!-- props call -->
+                <app-user-edit  v-bind:name="name"></app-user-edit>
             </div>
         </div>
     </div>
@@ -29,6 +32,9 @@ export default {
     methods: {
         changeName(){
             this.name = 'Lincoln'
+        },
+        resetName(){
+            this.name = 'Raymond'
         }
 
     },
