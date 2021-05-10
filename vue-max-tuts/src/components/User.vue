@@ -8,11 +8,11 @@
          <div class="row">
             <div class="col-xs-12 col-sm-6">
                 <!-- props call -->
-                <app-user-detail v-bind:name="name" v-on:nameWasReset="name = $event" :resetFn="resetName"></app-user-detail>
+                <app-user-detail v-bind:name="name" v-on:nameWasReset="name = $event" :resetFn="resetName" :userAge="age"></app-user-detail>
             </div>
             <div class="col-xs-12 col-sm-6">
                  <!-- props call -->
-                <app-user-edit  v-bind:name="name"></app-user-edit>
+                <app-user-edit  v-bind:name="name" :userAge="age" @ageWasEdited="age = $event"></app-user-edit>
             </div>
         </div>
     </div>
@@ -26,7 +26,8 @@
 export default {
     data: function(){
         return {
-            name: 'Raymond'
+            name: 'Raymond',
+            age: 27
         }
     },
     methods: {

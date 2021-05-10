@@ -1,13 +1,16 @@
 <template>
     <div class="component">
-        <h3>You may View the User Detail Here</h3>
-        <p>Many Details</p>
-        <p>Name: {{name}}</p>
+         <h3>You may edit the User Here</h3>
+        <p>Edit Me!</p>
+        <p>User Name: {{name}}</p>
+        <p>User Age: {{ userAge }}</p>
+        <button @click="editAge">Edit age</button>
     </div>
 </template>
 
 <script>
 export default {
+    props: ['userAge'],
       props : {
         name: {
             type: String,
@@ -15,7 +18,10 @@ export default {
         }
     },
     methods: {
-        
+        editAge(){
+            this.userAge = 30;
+            this.$emit('ageWasEdited', this.userAge)
+        }
     }
 }
 </script>

@@ -1,8 +1,9 @@
 <template>
     <div class="component">
-        <h3>You may edit the User Here</h3>
-        <p>Edit Me!</p>
-        <p>Name: {{ switchName()}}</p>
+       <h3>You may View the User Detail Here</h3>
+        <p>Many Details</p>
+        <p>User Name: {{ switchName()}}</p>
+        <p>User Age: {{ userAge}}</p>
         <!-- props -->
         <button v-on:click="resetName()">Reset Name using props</button>
         <!-- callback -->
@@ -20,7 +21,8 @@ export default {
             // default: 'Uju'
         },
         // callback function as an alternative to props 
-        resetFn: Function
+        resetFn: Function,
+        userAge: Number
     },
     methods: {
         switchName(){
