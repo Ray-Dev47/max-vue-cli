@@ -1,5 +1,7 @@
 <template>
    <div>
+       <slot></slot>
+       <slot name="title"></slot>
        <slot name="text"></slot>
        <h4>Just a Random Quote in between the slots</h4>
        <slot name="header"></slot>
