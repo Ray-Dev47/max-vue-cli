@@ -1,41 +1,42 @@
 <template>
   <div class="container">
       <div class="row">
-        <h2>Filters and Mixings</h2>
-        <p>{{ greeting | to-uppercase }}</p>
-        <hr>
-        <p>{{ greeting2 | customUppercase | to-lowercase }}</p>
+        <h2>Mixings 1</h2>
+        <p>{{ salute }}</p>
+        <button v-on:click="fruits.push('cherry')">Add More</button>
         <input type="text" class="form-control" v-model="filterText">
         <ul>
             <li v-for="fruit in filteredFruits" v-bind:key="fruit"> {{ fruit }} </li>
         </ul>
+        <hr>
+        <app-list></app-list>
     </div>   
   </div>
 </template>
 
 <script>
+//importing the list component
+import List from './components/List.vue'
+
+// importing the mixin 
+import { fruitMixin } from "./fruitMixin";
+
 export default {
-    data: function () {
+    data(){
         return{
-            greeting: 'Hello Raymond, Welcome to Nigeria  ....this paragraph was transformed to uppercase using filters globally',
-            greeting2: 'Hello Raymond, Welcome to Nigeria  ....this paragraph was transformed to uppercase using filters locally',
-            fruits: ['mango','papaya', 'orange', 'grape', 'apple', 'banana', 'cocoa'],
-            filterText: ''
+            salute: 'Hi Ray'
         }
+
     },
-    // registering filters locally
-    filters: {
-        customUppercase(value){
-            return value.toUpperCase()
-        }
+    // register the mixin
+    mixins: [fruitMixin],
+
+// register component
+    components: {
+       appList: List
     },
-    computed: {
-        filteredFruits() {
-            return this.fruits.filter((el) => {
-                return el.match(this.filterText)
-            })
-        }
-    }
+    
+    
 };
 </script>
 
