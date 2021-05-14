@@ -1,56 +1,41 @@
 <template>
   <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-            <h1>Normal Header </h1>
-            <p v-text="'Some texts'"></p>
-            <p v-html="'<strong>Some bold text </strong>'"></p>
-      </div>
-    </div>
-    <hr>
-    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-            <h1>Built in Directives </h1>
-            <p v-changeParagraph:background.delayed="'blue'">Some texts to add color to this paragraph using custom directives</p>
-            <p v-local-highlight:background.delayed.blink="{mainColor: 'red', secondColor: 'green', delay: 500}">Some texts to add color to this paragraph using custom directives</p>
-      </div>
+        <h2>Filters and Mixings</h2>
+        <p>{{ greeting | to-uppercase }}</p>
+        <hr>
+        <p>{{ greeting2 | customUppercase | to-lowercase }}</p>
+        <input type="text" class="form-control" v-model="filterText">
+        <ul>
+            <li v-for="fruit in filteredFruits" v-bind:key="fruit"> {{ fruit }} </li>
+        </ul>
+    </div>   
   </div>
 </template>
 
 <script>
 export default {
-     directives: {
-            'local-highlight': {
-                bind(el, binding, vnode) {
-                    var delay = 0;
-                    if (binding.modifiers['delayed']) {
-                        delay = 3000;
-                    }
-                    if (binding.modifiers['blink']) {
-                        let mainColor = binding.value.mainColor;
-                        let secondColor = binding.value.secondColor;
-                        let currentColor = mainColor;
-                        setTimeout(() => {
-                            setInterval(() => {
-                                currentColor == secondColor ? currentColor = mainColor : currentColor = secondColor;
-                                if (binding.arg == 'background') {
-                                    el.style.backgroundColor = currentColor;
-                                } else {
-                                    el.style.color = currentColor;
-                                }
-                            }, binding.value.delay);
-                        }, delay);
-                    } else {
-                        setTimeout(() => {
-                            if (binding.arg == 'background') {
-                                el.style.backgroundColor = binding.value.mainColor;
-                            } else {
-                                el.style.color = binding.value.mainColor;
-                            }
-                        }, delay);
-                    }
-                }
-            }
+    data: function () {
+        return{
+            greeting: 'Hello Raymond, Welcome to Nigeria  ....this paragraph was transformed to uppercase using filters globally',
+            greeting2: 'Hello Raymond, Welcome to Nigeria  ....this paragraph was transformed to uppercase using filters locally',
+            fruits: ['mango','papaya', 'orange', 'grape', 'apple', 'banana', 'cocoa'],
+            filterText: ''
         }
+    },
+    // registering filters locally
+    filters: {
+        customUppercase(value){
+            return value.toUpperCase()
+        }
+    },
+    computed: {
+        filteredFruits() {
+            return this.fruits.filter((el) => {
+                return el.match(this.filterText)
+            })
+        }
+    }
 };
 </script>
 
